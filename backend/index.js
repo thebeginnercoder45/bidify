@@ -29,7 +29,7 @@ app.use('/api/v1/bid', bidRoutes)
 
 app.get('/', (req, res) => {
     res.json({
-        message: "working"
+        message: "Backen working fine"
     })
 });
 

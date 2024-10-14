@@ -276,3 +276,47 @@ export const deleteAuctionItem = async (req, res) => {
         })
     }
 }
+
+
+export const updateItems = async (req, res) => {
+    try {
+        const {itemId} = req.params;
+
+        const { name, description, endTime } = req.body;
+
+        console.log(name)
+        if (!name || !description || !endTime) {
+            return res.status(401).json({
+                message: "All feilds are required",
+                success: false
+            })
+        }
+
+        const item = await AuctionItem.findByIdAndUpdate(itemId,
+            {
+                name,
+                description,
+                endTime
+            },
+            {new: true}
+        )
+
+        if (!item) {
+            return res.status(409).json({
+                message: "Can't found item by current item id",
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            message: "Item updated successfully",
+            success: true,
+            item,
+        })
+    } catch (error) {
+        return res.status(200).json({
+            message: "Failed to update item",
+            success: false,
+        })
+    }
+}

@@ -1,6 +1,6 @@
 import express from 'express'
 import { authenticate } from '../middlewares/Authenticate.js'
-import { createAuctionItems, declareWinner, deleteAuctionItem, getAllItems, getItemsById, getMyItems, getSingleItems } from '../controllers/auctionItem.controller.js'
+import { createAuctionItems, declareWinner, deleteAuctionItem, getAllItems, getItemsById, getMyItems, getSingleItems, updateItems } from '../controllers/auctionItem.controller.js'
 import { upload } from '../middlewares/multer.middleware.js';
 
 const router = express.Router();
@@ -18,5 +18,7 @@ router.get('/get-item-details/:itemId', getItemsById)
 router.post('/declare-winner', declareWinner);
 
 router.delete('/delete-auction-item/:itemId', authenticate, deleteAuctionItem)
+
+router.patch('/update-item/:itemid', updateItems)
 
 export default router;
