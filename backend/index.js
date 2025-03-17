@@ -28,9 +28,7 @@ app.use('/api/v1/auction', auctionRoute)
 app.use('/api/v1/bid', bidRoutes)
 
 app.get('/', (req, res) => {
-    res.json({
-        message: "Backen working fine"
-    })
+    res.send("Express on vercel")
 });
 
 const port = process.env.PORT || 5000;
